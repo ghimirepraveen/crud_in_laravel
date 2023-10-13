@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class  ProductController extends Controller
 {
+   public function welcome(){
+    return view ('welcome');
+   }
+
     public  function index(){
         $products=product::all();
        return view('products.products',['product'=>$products]); 
