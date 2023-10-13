@@ -10,7 +10,41 @@
     
     <h1>Products</h1>
     <div>
-        index
+        <a href="{{route('product.create')}}">Add Product</a>
+    </div>
+    <div>
+        <table border='1'>
+            <tr>
+               <th>ID</th>
+               <th>Name</th>
+               <th>Qty</th>
+               <th>PRICE</th>
+               <th>Description </th>
+               <th>Edit </th>
+               <th>Delete</th>
+             </tr>
+
+             @foreach($product as $product )
+
+            <tr>
+                <td>{{$product->id}}</td>
+                <td>{{$product->name}}</td>
+                <td>{{$product->qty}}</td>
+                <td>{{$product->price}}</td>
+                <td>{{$product->description}}</td>
+               <td>
+                    <a href="{{route('product.edit',['product'=>$product])}}">Edit</a>
+                </td>
+                <td>
+                  <form method ="post" action="{{route('product.delete',['product'=>$product])}}">
+                    @csrf
+                    @method("delete")
+                <input type="summit" value="Delete"/>    
+                </form>                    
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </div>
 </body>
 </html>

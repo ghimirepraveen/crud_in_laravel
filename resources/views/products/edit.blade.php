@@ -7,7 +7,16 @@
     <title>Document</title>
  </head>
  <body>
-    <h1>Create a product</h1>
+    <h1>Edit a product</h1>
+    {{-- <div>
+        @if(session()->has('success'))
+  <div>
+
+    {{session('success')}}
+  </div>
+  @endif  
+ 
+    </div> --}}
     <div>
 
         @if($errors->any())
@@ -19,30 +28,30 @@
         @endif
         
     </div>
-    <form method="post" action="{{route('product.store')}}">
+    <form method="post" action="{{route('product.update',['product'=>$product])}}">
        @csrf
-       @method('post') 
+       @method('put') 
 <div>
     <label>Name:</label>
-    <input type="text" name="name" placeholder="FUll Name">
+    <input type="text" name="name" placeholder="FUll Name" value="{{$product->name}}">
 </div>
 
 <div>
     <label>QTY:</label>
-    <input type="text" name="qty" placeholder="Quantity">
+    <input type="text" name="qty" placeholder="Quantity" value="{{$product->qty}}">
 </div>
 
 <div>
     <label>Price:</label>
-    <input type="text" name="price" placeholder="PRICE">
+    <input type="text" name="price" placeholder="PRICE" value="{{$product->price}}">
 </div>
 
 <div>
     <label>Description</label>
-    <input type="text" name="description" placeholder="DESCRIPTION">
+    <input type="text" name="description" placeholder="DESCRIPTION" value="{{$product->description}}">
 </div>
 <div>
-    <input type="submit" value="Save a new value"
+    <input type="submit" value="Update">
   </div>
     </form>
  </body>
